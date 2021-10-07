@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for pro in pro %}
+<div style="width:800px; margin:0 auto;">
+    <a href="/product/{{ pro.slug }}"><h2>{{ pro.Name }}</h2></a>
+<p><b>Category: </b>{{ pro.Category }}</p>
+<p><b>Price: </b>{{ pro.new_price }}</p>
+<img src="{{ pro.image.url }}" width="70" height="40" alt="{{ pro.alt }}">
+<p><b>description: </b>{{ pro.description }}</p>
+
+</div>
+<hr>
+
+
+{% endfor %}
+{% endblock content %}
+</body>
+</html>

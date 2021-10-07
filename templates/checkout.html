@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for pro in pro %}
+<div style="width:800px; margin:0 auto;">
+    <a href="/product/{{ pro.slug }}"><h2>{{ pro.Name }}</h2></a>
+<p><b>Category: </b>{{ pro.Category }}</p>
+<p><b>Price: </b>{{ pro.new_price }}</p>
+<img src="{{ pro.image.url }}" width="500" height="350" alt="{{ pro.alt }}">
+<p><b>Price: </b>{{ pro.new_price }}</p>
+<br>
+
+<hr>
+<h3>Your Address</h3>
+{% for pro1 in pro1 %}
+<p><b>First Name: </b>{{ pro1.First_Name }}</p>
+<p><b>Last Name: </b>{{ pro1.Last_Name }}</p>
+<p><b>Address_Line_1: </b>{{ pro1.Address_Line_1 }}</p>
+<p><b>Address_Line_2: </b>{{ pro1.Address_Line_2 }}</p>
+<p><b>City: </b>{{ pro1.City }}</p>
+<p><b>Phone: </b>{{ pro1.Phone }}</p>
+
+
+
+
+<a href="/address/"><h2>Add Address</h2></a>
+<br>
+
+<form method="POST" action="/checkout/{{ pro.slug }}">
+    {% csrf_token %}
+    <input hidden type="text" name="Name" placeholder="First Name" value="{{ pro.Name }}">
+    <input hidden type="number" name="new_price" placeholder="First Name" value="{{ pro.new_price }}">
+    <input hidden type="text" name="First_Name" placeholder="First Name" value="{{ pro1.First_Name }}">
+    <input hidden type="text" name="Last_Name" placeholder="First Name" value="{{ pro1.Last_Name }}">
+    <input hidden type="text" name="Address_Line_1" placeholder="First Name" value="{{ pro1.Address_Line_1 }}">
+    <input hidden type="text" name="Address_Line_2" placeholder="First Name" value="{{ pro1.Address_Line_2 }}">
+    <input hidden type="text" name="City" placeholder="First Name" value="{{ pro1.City }}">
+    <input hidden type="text" name="Phone" placeholder="First Name" value="{{ pro1.Phone }}">
+    <button type="submit">Order Now</button>
+</form>
+</div>
+{% endfor %}
+
+{% endfor %}
+
+{% endblock content %}
+</body>
+</html> 

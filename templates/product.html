@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for pro in pro %}
+<div style="width:800px; margin:0 auto;">
+    <a href="/product/{{ pro.slug }}"><h2>{{ pro.Name }}</h2></a>
+<p><b>Category: </b>{{ pro.Category }}</p>
+<p><b>Price: </b>{{ pro.new_price }}</p>
+<img src="{{ pro.image.url }}" width="500" height="350" alt="{{ pro.alt }}">
+<p><b>description: </b>{{ pro.description }}</p>
+<p><b>Width: </b>{{ pro.Width }}</p>
+<p><b>Height: </b>{{ pro.Height }}</p>
+<p><b>Depth: </b>{{ pro.Depth }}</p>
+<p><b>Weight: </b>{{ pro.Weight }}</p>
+{% if user.is_authenticated %}
+<form action="/checkout/{{ pro.slug }}">
+    {% csrf_token %}
+    <button type="submit">Order Now</button>
+</form>
+{% else %}
+<center>
+<a href="/account/login">Login to Buy</a></center>
+{% endif %}
+</div>
+
+
+{% endfor %}
+{% endblock content %}
+
